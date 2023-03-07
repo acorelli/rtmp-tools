@@ -11,6 +11,8 @@ if __name__ == '__main__':
   ENV_DEFAULT_PORT = os.getenv('ENV_DEFAULT_PORT')
   ENV_HOST_URL = os.getenv('ENV_HOST_URL')
   ENV_HOST_APP = os.getenv('ENV_HOST_APP')
+  ENV_FOURCC = os.getenv('ENV_FOURCC')
+  ENV_OUTPUT_FORMAT = os.getenv('ENV_OUTPUT_FORMAT')
   
   # Init VideoCaptures
   cam = []
@@ -50,8 +52,10 @@ if __name__ == '__main__':
       case 0x72: # 'r'
         record = not record
         if record:
-          writer = cv2.VideoWriter(filename='output_{}.avi'.format(datetime.now().strftime('%Y%m%d_%H%M%S')),
-                                   fourcc=cv2.VideoWriter_fourcc(*'XVID'),
+          fname = 'output_{0}'.format(datetime.now().strftime('%Y%m%d_%H%M%S')) + ENV_OUTPUT_FORMAT
+          print('Writing to {}'.format(fname))
+          writer = cv2.VideoWriter(filename=fname,
+                                   fourcc=cv2.VideoWriter_fourcc(*ENV_FOURCC),
                                    fps=fps,
                                    frameSize=(frame.shape[1], frame.shape[0]))
         else:
