@@ -1,0 +1,5 @@
+ffmpeg
+ffmpeg-python
+numpy
+opencv-python
+python-dotenv
