@@ -1,0 +1,6 @@
+ffmpeg
+ffmpeg-python
+numpy
+opencv-python
+picamera
+python-dotenv
