@@ -8,11 +8,11 @@ from dotenv import load_dotenv
 if __name__ == '__main__':
   # Get host info
   load_dotenv()
-  ENV_DEFAULT_PORT = os.getenv('ENV_DEFAULT_PORT')
+  ENV_DEFAULT_PORT = os.getenv('ENV_DEFAULT_PORT', '1935')
   ENV_HOST_URL = os.getenv('ENV_HOST_URL')
-  ENV_HOST_APP = os.getenv('ENV_HOST_APP')
-  ENV_FOURCC = os.getenv('ENV_FOURCC')
-  ENV_OUTPUT_FORMAT = os.getenv('ENV_OUTPUT_FORMAT')
+  ENV_HOST_APP = os.getenv('ENV_HOST_APP', '/stream')
+  ENV_FOURCC = os.getenv('ENV_FOURCC', 'mp4v')
+  ENV_OUTPUT_FORMAT = os.getenv('ENV_OUTPUT_FORMAT', '.mp4')
   
   # Init VideoCaptures
   cam = []
@@ -52,7 +52,14 @@ if __name__ == '__main__':
       case 0x72: # 'r'
         record = not record
         if record:
-          fname = 'output_{0}'.format(datetime.now().strftime('%Y%m%d_%H%M%S')) + ENV_OUTPUT_FORMAT
+          outputPath = "clips"
+          output_dir = os.path.join(os.getcwd(), outputPath)
+          try:
+            os.mkdir(output_dir)
+          except:
+            pass
+          print(output_dir)
+          fname = output_dir + '/output_{0}'.format(datetime.now().strftime('%Y%m%d_%H%M%S')) + ENV_OUTPUT_FORMAT
           print('Writing to {}'.format(fname))
           writer = cv2.VideoWriter(filename=fname,
                                    fourcc=cv2.VideoWriter_fourcc(*ENV_FOURCC),

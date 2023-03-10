@@ -1,3 +1,17 @@
+!viewing
+!viewing/pull.py
+!viewing/timelapse.py
+!viewing/requirements.txt
+viewing/*
+viewing/**
+
+!publishing
+!publishing/requirements.txt
+!publishing/picamera
+!publishing/picamera/push.py
+!publishing/webcam
+!publishing/webcam/push.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
