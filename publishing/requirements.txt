@@ -1,6 +1,6 @@
 ffmpeg
 ffmpeg-python
 numpy
-opencv-python
+opencv-python==4.5.3.56
 picamera
 python-dotenv
